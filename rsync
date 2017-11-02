@@ -1,0 +1,44 @@
+
+
+rsync -zavP /home/skipo/temp/skidki/ root@37.143.14.38:/var/www/skipo/data/www/skidka.skipodev.ru
+
+rsync -zavP /home/skipo/temp/analitics/ root@37.143.14.38:/var/www/old_skipo/data/www/skipoanalit.skipodevelop.ru
+
+
+
+
+Источник / Получатель
+rsync -zavP root@37.143.14.38:/var/www/old_skipo/data/www/skipoanalit.skipodevelop.ru/ /home/skipo/temp/analitics/
+
+rsync -zavP /home/skipo/temp/analitics/ root@37.143.14.38:/var/www/skipo/data/www/analitics.skipodev.ru
+
+
+rsync -zavP root@37.143.14.38:/var/www/skipo/data/www/insfera.skipodev.ru/ /home/skipo/temp/insfera.skipodev.ru/
+
+rsync -zavP root@95.47.153.251:/var/www/html/ /home/skipo/temp/backups/umnim.ulmart.ru
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/ulmart.skipodev.ru/ /home/skipo/temp/backups/ulmart.skipodev.ru
+
+rsync -zavP /home/skipo/temp/backups/ulmart.skipodev.ru/ root@91.218.229.221:/var/www/skipo/data/www/ulmart.skipodev.ru
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/teledom.skipodev.ru/ /home/skipo/temp/backups/teledom.skipodev.ru
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/umnim.ulmart.ru/ /home/skipo/temp/backups/umnim.ulmart.ru
+
+rsync -zavP /home/skipo/temp/yii2_build/ root@91.218.229.221:/var/www/skipo/data/www/cottage.skipodev.ru
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/nodejs/ /home/skipo/temp/backups/
+
+rsync -zavP root@193.124.177.160:/var/www/moihottur/data/www/moihottur.ru/ /home/skipo/temp/backups/
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/cottage.skipodev.ru/ /home/skipo/skipo_git/cottage
+
+
+rsync -zavP root@91.218.229.221:/var/www/tour/data/www/tour.skipodevelop.com/ /media/skipo/E4988EA9988E79B6/git_repo/mgt_tours
+
+rsync -zavP root@91.218.229.221:/var/www/skipo/data/www/teledom.skipodev.ru/ /home/skipo/skipo_git/teledom_yii2
+
+rsync -zavP root@91.218.229.221:/var/www/tour/data/www/old.tour.skipodevelop.com/ /home/skipo/skipo_git/old_tour
+
+
+rsync -zavP /var/www/local_ionic/ root@95.183.10.70:/var/www/local_ionic

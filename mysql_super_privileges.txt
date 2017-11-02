@@ -1,0 +1,1 @@
+ mysql> GRANT SUPER ON *.* TO teledom@'localhost' IDENTIFIED BY 'Q6w8J1k8';

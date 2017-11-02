@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="ru-RU">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="ru-RU">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8) ]><!-->
+<html lang="ru-RU">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Доступ на основе RBAC в basic приложении Yii 2  | skill</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://skill.vpvd.ru/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://skill.vpvd.ru/wp-content/themes/twentyfourteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="skill &raquo; лента" href="http://skill.vpvd.ru/feed" />
+<link rel="alternate" type="application/rss+xml" title="skill &raquo; лента комментариев" href="http://skill.vpvd.ru/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="skill &raquo; Доступ на основе RBAC в basic приложении Yii 2 лента комментариев" href="http://skill.vpvd.ru/dostup-na-osnove-rbac-v-basic-prilozhenii-yii-2.html/feed" />
+<link rel='stylesheet' id='scap.flashblock-css'  href='http://skill.vpvd.ru/wp-content/plugins/compact-wp-audio-player/css/flashblock.css?ver=3.9.13' type='text/css' media='all' />
+<link rel='stylesheet' id='scap.player-css'  href='http://skill.vpvd.ru/wp-content/plugins/compact-wp-audio-player/css/player.css?ver=3.9.13' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='http://skill.vpvd.ru/wp-content/themes/twentyfourteen/genericons/genericons.css?ver=3.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-style-css'  href='http://skill.vpvd.ru/wp-content/themes/twentyfourteen/style.css?ver=3.9.13' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://skill.vpvd.ru/wp-content/themes/twentyfourteen/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='http://skill.vpvd.ru/wp-content/plugins/compact-wp-audio-player/js/soundmanager2-nodebug-jsmin.js?ver=3.9.13'></script>
+<script type='text/javascript' src='http://skill.vpvd.ru/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+<script type='text/javascript' src='http://skill.vpvd.ru/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://skill.vpvd.ru/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://skill.vpvd.ru/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Access Control Filter в YII2' href='http://skill.vpvd.ru/access-control-filter-v-yii2.html' />
+<link rel='next' title='Доступ №2 на основе RBAC в basic приложении Yii 2' href='http://skill.vpvd.ru/dostup-2-na-osnove-rbac-v-basic-prilozhenii-yii-2.html' />
+<meta name="generator" content="WordPress 3.9.13" />
+<link rel='canonical' href='http://skill.vpvd.ru/dostup-na-osnove-rbac-v-basic-prilozhenii-yii-2.html' />
+<link rel='shortlink' href='http://skill.vpvd.ru/?p=3916' />
+</head>
+
+<body class="single single-post postid-3916 single-format-standard custom-background masthead-fixed full-width singular">
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><span>web</span> <a href="http://skill.vpvd.ru/" rel="home">skill</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Поиск</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Основное меню</button>
+				<a class="screen-reader-text skip-link" href="#content">Перейти к содержимому</a>
+				<div class="menu-glavnoe-container"><ul id="menu-glavnoe" class="nav-menu"><li id="menu-item-203" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-203"><a title="самые актуальные посты" href="http://skill.vpvd.ru/category/cool">cool</a></li>
+<li id="menu-item-109" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-109"><a href="http://skill.vpvd.ru/category/linux">linux</a></li>
+<li id="menu-item-778" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-778"><a href="http://skill.vpvd.ru/category/wordpress">wordpress</a></li>
+<li id="menu-item-110" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-110"><a href="http://skill.vpvd.ru/category/mysql">mysql</a></li>
+<li id="menu-item-111" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-111"><a href="http://skill.vpvd.ru/category/yii">yii</a></li>
+<li id="menu-item-1286" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1286"><a href="http://skill.vpvd.ru/category/bitrix">bitrix</a></li>
+<li id="menu-item-108" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-108"><a href="http://skill.vpvd.ru/category/java">java</a>
+<ul class="sub-menu">
+	<li id="menu-item-380" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-380"><a href="http://skill.vpvd.ru/category/tomcat">tomcat</a></li>
+</ul>
+</li>
+<li id="menu-item-381" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-381"><a href="http://skill.vpvd.ru/category/mix">mix</a>
+<ul class="sub-menu">
+	<li id="menu-item-1125" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1125"><a href="http://skill.vpvd.ru/category/webasyst">webasyst</a></li>
+	<li id="menu-item-2473" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2473"><a title="панель управления" href="http://skill.vpvd.ru/category/mix/vestacp">VestaCP</a></li>
+	<li id="menu-item-925" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-925"><a title="движок PrestaShop" href="http://skill.vpvd.ru/category/prestashop">presta</a></li>
+	<li id="menu-item-2108" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2108"><a href="http://skill.vpvd.ru/category/jquery">jquery</a></li>
+	<li id="menu-item-890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-890"><a href="http://skill.vpvd.ru/category/github">github</a></li>
+	<li id="menu-item-106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-106"><a href="http://skill.vpvd.ru/category/centos">centos</a></li>
+	<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-107"><a href="http://skill.vpvd.ru/category/htaccess">htaccess</a></li>
+	<li id="menu-item-513" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-513"><a href="http://skill.vpvd.ru/category/virtualbox">virtualbox</a></li>
+	<li id="menu-item-718" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-718"><a href="http://skill.vpvd.ru/category/wordpress">wordpress</a></li>
+	<li id="menu-item-343" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-343"><a href="http://skill.vpvd.ru/category/xpath">xpath</a></li>
+	<li id="menu-item-382" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-382"><a href="http://skill.vpvd.ru/category/windows">windows</a></li>
+</ul>
+</li>
+<li id="menu-item-112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-112"><a title="коротко об этом сайте" href="http://skill.vpvd.ru/about">сайт</a></li>
+</ul></div>			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="http://skill.vpvd.ru/">
+				<label>
+					<span class="screen-reader-text">Найти:</span>
+					<input type="search" class="search-field" placeholder="Поиск &hellip;" value="" name="s" title="Найти:" />
+				</label>
+				<input type="submit" class="search-submit" value="Найти" />
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			
+<article id="post-3916" class="post-3916 post type-post status-publish format-standard hentry category-yii2">
+	
+	<header class="entry-header">
+				<div class="entry-meta">
+			<span class="cat-links"><a href="http://skill.vpvd.ru/category/yii2" title="Просмотреть все записи в yii2" rel="category tag">yii2</a></span>
+		</div>
+		<h1 class="entry-title">Доступ на основе RBAC в basic приложении Yii 2</h1>
+		<div class="entry-meta">
+			<span class="entry-date"><a href="http://skill.vpvd.ru/dostup-na-osnove-rbac-v-basic-prilozhenii-yii-2.html" rel="bookmark"><time class="entry-date" datetime="2016-04-21T09:38:30+00:00">21 Апрель 2016</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="http://skill.vpvd.ru/author/skill" rel="author">skill</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Задача понять принцип работы RBACв приложении на Yii 2 и реализовать его для тех пользователей, которые формируются в базовом приложении – adminи demo. Использовать будем PhpManager.</p>
+<p><span id="more-3916"></span></p>
+<p>Из  того, что мы будем использовать, после создания нового приложения у нас есть только модель Userв директории app\model.</p>
+<p>Что нам понадобится для реализации доступа на RBAC</p>
+<ol>
+<li>Настроить доступ к authManager в общем конфиге app\config\web.php</li>
+<li>Настроить доступ к authManager в конфиге консоли app\config\console.php</li>
+<li>Создать контроллер app\commands\RbacController для автоматического создания ролей, разрешений и привязывания их к idпользователей из app\model\User.php (admin = 100, demo = 101)</li>
+<li>Создать класс app\commands\Rbacв котором у нас будут храниться константы описывающие наши разрешения</li>
+<li>Создать директорию rbacна одном уровне с controllers, configи т.д.</li>
+</ol>
+<p>Сразу поймем тот факт, что у нас есть модель app\model\User.php в которой указаны два пользователя adminи demo с номерами 100 и 101 соответственно</p>
+<pre>private static $users = [
+     '100' =&gt; [
+         'id' =&gt; '100',
+         'username' =&gt; 'admin',
+         'password' =&gt; 'admin',
+         'authKey' =&gt; 'test100key',
+         'accessToken' =&gt; '100-token',
+     ],
+     '101' =&gt; [
+         'id' =&gt; '101',
+         'username' =&gt; 'demo',
+         'password' =&gt; 'demo',
+         'authKey' =&gt; 'test101key',
+         'accessToken' =&gt; '101-token',
+     ],
+ ];</pre>
+<p>После входа на сайт через форму login объект все эти пользовательские данные будут доступны через  Yii::$app-&gt;user-&gt;identity. Выглядеть это будет вот так</p>
+<pre>app\models\User Object
+(
+   [id] =&gt; 100
+   [username] =&gt; admin
+   [password] =&gt; admin
+   [authKey] =&gt; test100key
+   [accessToken] =&gt; 100-token
+   [role] =&gt; admin
+)</pre>
+<p>Давайте реализуем такой тренировочный замысел: создадим разграничение прав доступа для страниц aboutи contactбазового приложения, то есть мы будем проверять права доступа на основе ролей и разрешений в  RBAC для двух экшенов контроллера app\controllers\SiteController– actionAboutи actionContact.</p>
+<p><strong>Первое</strong>, что мы сделаем – обеспечим доступ к объекту authManager в двух конфигах: консольного приложения и основного приложения. Для этого в двух файлах app\config\console.php и app\config\web.php впишем вот это</p>
+<pre>…
+ 'components' =&gt; [
+    'authManager' =&gt; [
+       'class' =&gt; 'yii\rbac\PhpManager',
+    ],
+ …</pre>
+<p><strong>Вторым шагом</strong> нам нужно создать директорию rbac на одном уровне с controllers, configи т.д. В ней будут находиться все файлы необходимые для работы RBAC.</p>
+<p><strong>Третьим шагом</strong> мы создадим хранилище названий наших разрешений. Храниться они будут в виде констант в отдельном классе app\commands\Rbac. Это необхоидмо сделать для того, чтобы мы могли использовать или менять наши разрешения в любом месте нашего приложения – константу-то можно вызвать в любом месте просто подгрузив нужный класс. Вот код этого класса</p>
+<pre>&lt;?php
+
+namespace app\commands;
+ 
+class Rbac
+{
+   const PERMISSION_ABOUT = 'viewAbout';
+   const PERMISSION_CONTACT = 'viewContact';
+}</pre>
+<p><strong>Четвертым шагом</strong> мы создадим контроллер для создания ролей и разрешений. Выполнять этот контроллер мы будем в консоли.  Нам нужно сделать так, чтобы для роли demoбыло доступно только  разрешение viewAbout, а для роли admin были доступны все права из demoи плюс разрешение viewContact.  Вот код этого контроллера с пояснениями</p>
+<pre>&lt;?php
+namespace app\commands;
+
+use Yii;
+use yii\console\Controller;
+
+use app\commands\Rbac;
+
+class RbacController extends Controller
+{
+ public function actionInit()
+ {
+ $auth = \Yii::$app-&gt;authManager;
+ $auth-&gt;removeAll();
+
+ // добавляем разрешение "viewAbout"
+ $viewAbout = $auth-&gt;createPermission(Rbac::PERMISSION_ABOUT);
+ $viewAbout-&gt;description = 'You can read about page this site';
+ $auth-&gt;add($viewAbout);
+ 
+ // добавляем разрешение "viewContact"
+ $viewContact = $auth-&gt;createPermission(Rbac::PERMISSION_CONTACT);
+ $viewContact-&gt;description = 'You can send feedback';
+ $auth-&gt;add($viewContact); 
+
+ // добавляем роль "demo" и 
+ // для которой разрешено только разрешение "viewAbout"
+ $demo = $auth-&gt;createRole('demo');
+ $auth-&gt;add($demo);
+ $auth-&gt;addChild($demo, $viewAbout);
+ 
+ // добавляем роль "admin" и даём роли разрешение "viewContact"
+ // а также все разрешения роли "demo"
+ $admin = $auth-&gt;createRole('admin');
+ $auth-&gt;add($admin);
+ $auth-&gt;addChild($admin, $viewContact);
+ $auth-&gt;addChild($admin, $demo);
+
+ // Назначение ролей пользователям из app\models\User
+ // 100 и 101 это IDs возвращаемые IdentityInterface::getId()
+ $auth-&gt;assign($demo, 101);
+ $auth-&gt;assign($admin, 100);
+ }
+}</pre>
+<p>После всего этого нам необходимо в корне нашего приложения выполнить команду, которая запустит контроллер app\commands\RbacController и автоматически создаст все необходимы для нас файлы. Вот эта команда</p>
+<pre>php yii rbac/init</pre>
+<p>После отработки этой команды в директории app\rbacпоявятся три файла: assignments.php, items.phpи rules.php</p>
+<p>В файле assignmentsбудет массив связывающий id пользователей с их ролями, в файле items.phpбудет массив описыващий разрешения, роли и их связь друг с другом, а файл rules.phpбудет, в нашем случае, пустым.</p>
+<p>Вот содержимое этих файлов</p>
+<p>Файл assignments.php</p>
+<pre>&lt;?php
+return [
+ 101 =&gt; [
+ 'demo',
+ ],
+ 100 =&gt; [
+ 'admin',
+ ],
+];</pre>
+<p>Файл items.php</p>
+<pre>&lt;?php
+return [
+ 'viewAbout' =&gt; [
+ 'type' =&gt; 2,
+ 'description' =&gt; 'Can read about page this site',
+ ],
+ 'viewContact' =&gt; [
+ 'type' =&gt; 2,
+ 'description' =&gt; 'Can send feedback',
+ ],
+ 'demo' =&gt; [
+ 'type' =&gt; 1,
+ 'children' =&gt; [
+ 'viewAbout',
+ ],
+ ],
+ 'admin' =&gt; [
+ 'type' =&gt; 1,
+ 'children' =&gt; [
+ 'viewContact',
+ 'demo',
+ ],
+ ],
+];</pre>
+<p>Теперь, самое время, сформировать проверку прав доступа на основе созданных нами ролей и разрешений RBAC в контроллере app\controllers\SiteController для действий actionAboutи actionContact. Делать мы это будем посредством фильтров. Вот нужный нам в фильтре код:</p>
+<pre>'access' =&gt; [
+ 'class' =&gt; AccessControl::className(),
+ 'denyCallback' =&gt; function ($rule, $action) {
+ throw new ForbiddenHttpException('Access denied');
+ }, 
+ 'only' =&gt; ['about','contact'],
+ 'rules' =&gt; [ 
+ [
+ 'actions' =&gt; ['about'],
+ 'allow' =&gt; true,
+ 'roles' =&gt; [Rbac::PERMISSION_ABOUT],
+ ], 
+ [
+ 'actions' =&gt; ['contact'],
+ 'allow' =&gt; true,
+ 'roles' =&gt; [Rbac::PERMISSION_CONTACT],
+ ], 
+ ],
+],</pre>
+<p>Теперь, если мы залогинимся на сайте как demo, то из двух экшенов aboutи contact посмотреть мы сможем только страницу about, если же войдем на сайт как админ, то нам будут доступны обе страницы.</p>
+<p>Поставленная цель достигнута.</p>
+<p>Файлы прикладываю = <a href="http://skill.vpvlab.ru/wp-content/uploads/2016/04/rbac_example.zip">rbac_example</a></p>
+	</div><!-- .entry-content -->
+	
+	</article><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Навигация по записи</h1>
+		<div class="nav-links">
+			<a href="http://skill.vpvd.ru/access-control-filter-v-yii2.html" rel="prev"><span class="meta-nav">Предыдущая запись</span>Access Control Filter в YII2</a><a href="http://skill.vpvd.ru/dostup-2-na-osnove-rbac-v-basic-prilozhenii-yii-2.html" rel="next"><span class="meta-nav">Следующая запись</span>Доступ №2 на основе RBAC в basic приложении Yii 2</a>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+			</div><!-- #content -->
+	</div><!-- #primary -->
+
+<div id="secondary">
+		<h2 class="site-description">подсказки и примеры</h2>
+	
+	
+	</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+			<div class="site-info">
+								Сайт работает на WordPress &nbsp; | &nbsp; <a href="/">skill.vpvlab.ru</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	
+<!-- WP Audio player plugin v1.9.3 - https://www.tipsandtricks-hq.com/wordpress-audio-music-player-plugin-4556/ -->
+    <script type="text/javascript">
+        soundManager.useFlashBlock = true; // optional - if used, required flashblock.css
+        soundManager.url = 'http://skill.vpvd.ru/wp-content/plugins/compact-wp-audio-player/swf/soundmanager2.swf';
+        function play_mp3(flg, ids, mp3url, volume, loops)
+        {
+            //Check the file URL parameter value
+            var pieces = mp3url.split("|");
+            if (pieces.length > 1) {//We have got an .ogg file too
+                mp3file = pieces[0];
+                oggfile = pieces[1];
+                //set the file URL to be an array with the mp3 and ogg file
+                mp3url = new Array(mp3file, oggfile);
+            }
+
+            soundManager.createSound({
+                id: 'btnplay_' + ids,
+                volume: volume,
+                url: mp3url
+            });
+
+            if (flg == 'play') {
+                    soundManager.play('btnplay_' + ids, {
+                    onfinish: function() {
+                        if (loops == 'true') {
+                            loopSound('btnplay_' + ids);
+                        }
+                        else {
+                            document.getElementById('btnplay_' + ids).style.display = 'inline';
+                            document.getElementById('btnstop_' + ids).style.display = 'none';
+                        }
+                    }
+                });
+            }
+            else if (flg == 'stop') {
+    //soundManager.stop('btnplay_'+ids);
+                soundManager.pause('btnplay_' + ids);
+            }
+        }
+        function show_hide(flag, ids)
+        {
+            if (flag == 'play') {
+                document.getElementById('btnplay_' + ids).style.display = 'none';
+                document.getElementById('btnstop_' + ids).style.display = 'inline';
+            }
+            else if (flag == 'stop') {
+                document.getElementById('btnplay_' + ids).style.display = 'inline';
+                document.getElementById('btnstop_' + ids).style.display = 'none';
+            }
+        }
+        function loopSound(soundID)
+        {
+            window.setTimeout(function() {
+                soundManager.play(soundID, {onfinish: function() {
+                        loopSound(soundID);
+                    }});
+            }, 1);
+        }
+        function stop_all_tracks()
+        {
+            soundManager.stopAll();
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id.indexOf("btnplay_") == 0) {
+                    inputs[i].style.display = 'inline';//Toggle the play button
+                }
+                if (inputs[i].id.indexOf("btnstop_") == 0) {
+                    inputs[i].style.display = 'none';//Hide the stop button
+                }
+            }
+        }
+    </script>
+    <script type='text/javascript' src='http://skill.vpvd.ru/wp-content/themes/twentyfourteen/js/functions.js?ver=20140319'></script>
+</body>
+</html>

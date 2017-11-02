@@ -1,0 +1,158 @@
+@media screen and (max-width: 1300px) {
+    .second_block{
+        background-size: 40% auto;
+        background-repeat: repeat-y;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .modal .modal-dialog .modal-content .close{
+        right: 0;
+        top: 0;
+    }
+}
+@media screen and (max-width: 991px) {
+    .first_block .main_img .buuble{
+        background-size: cover;
+        width: 243px;
+        height: 100px;
+        font-size: 38px;
+        line-height: 25px;
+        padding-top: 25px;
+    }
+    .second_block .main_question .img_block img{
+        width: 100%;
+    }
+    .second_block .main_question p{
+        font-size:13px;
+    }
+    .three_block .input_block{
+        width: auto;
+        max-width: 500px;
+        margin: 0;
+        margin-bottom: 50px;
+    }
+    .modal .modal-dialog .modal-content .modal-body .main_cert_img img{
+        width: 100%;
+    }
+    #uslovia .modal-dialog .modal-content .modal-body .text_block ul p{
+        font-size: 12px;
+        width: 80%;
+    }
+    #uslovia .modal-dialog .modal-content .modal-body .text_block ul li .img_block img{
+        max-width: 100%;
+    }
+    #resume_form .wrapper{
+        padding:0 10px;
+        width: auto;
+    }
+    .test_page .test_block{
+        width: 100%;
+    }
+    .test_page .test_block h1{
+        font-size: 50px;
+        padding-top: 20px;
+    }
+    .test_page .test_block .time{
+        right: 0;
+    }
+    .test_page .main_img{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .test_page .test_block .test_item .img_block img{
+        width: 100%;
+    }
+    .test_page .test_block ul li{
+        display: block;
+    }
+    .test_page .test_block .test_item .img_block{
+        width: 50%;
+        margin: 0 auto;
+    }
+    .test_page .test_block .test_text p{
+        padding: 0;
+        font-size: 20px;
+    }
+    .test_page .test_block h2{
+        font-size: 40px;
+    }
+    .test_page .test_block .radio li label{
+        font-size: 20px;
+
+    }
+    .test_page .test_block .radio li{
+        margin-bottom: 80px;
+    }
+    .test_page .test_block .radio li:nth-child(2){
+        margin-bottom: 80px;
+    }
+}
+@media screen and (max-width: 530px) {
+    .first_block .main_img .buuble{
+        background-size: cover;
+        font-size: 29px;
+        height: 83px;
+        line-height: 25px;
+        padding-top: 16px;
+        width: 200px;
+    }
+    .first_block .logo{
+        max-width: 100%;
+        text-align: center;
+    }
+    .first_block .logo img{
+        width: 80%;
+    }
+    h1{
+        font-size: 40px;
+    }
+    h2{
+        font-size: 35px;
+    }
+    .text_modal .modal-dialog .modal-content .modal-body{
+        padding: 0;
+    }
+    .text_modal .modal-dialog .modal-content .modal-body .text_block p{
+        font-size: 12px;
+    }
+    .text_modal .modal-dialog .modal-content .modal-body .text_block{
+        padding:30px 10px;
+    }
+    .second_block .main_question p{
+        font-size: 9px;
+    }
+    .test_page .main_img .buuble{
+        right: 0;
+        font-size: 27px;
+        height: 66px;
+        line-height: 25px;
+        padding-top: 9px;
+        width: 160px;
+    }
+    .test_page .test_block .radio li{
+        display: block;
+        width: 100%;
+    }
+    .test_page .test_block .radio li:nth-child(2){
+        margin-bottom: 80px;
+    }
+    .test_page .test_block{
+        margin-top:100px;
+    }
+    .test_page .test_block .gift li a img{
+        width: 100%;
+    }
+    .test_page .test_block .tupoy{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .second_block .main_question p{
+        font-size:10px;
+    }
+    .test_page .test_block h1 {
+        font-size: 34px;
+        padding-top: 59px;
+    }
+}
